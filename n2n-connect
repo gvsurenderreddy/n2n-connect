@@ -16,7 +16,27 @@ if (( $# < 1)); then
 fi
 
 if [ ! -e "/etc/n2n/$1" ]; then
-	echo "Profile not found"
+	echo "Error: could not open profile definition in /etc/n2n/$1"
+	exit 1
+fi
+
+if [ ! -z $INTF_ADDRESS ]; then
+	echo "Error: interface address not set."
+	exit 1
+fi
+
+if [ ! -z $NETWORK_NAME ]; then
+	echo "Error: Network community name not set."
+	exit 1
+fi
+
+if [ ! -z $N2N_KEY ]; then
+	echo "Error: Network key not set."
+	exit 1
+fi
+
+if [ ! -z $SUPERNODE_ADDRESS ]; then
+	echo "Error: Supernode address not set."
 	exit 1
 fi
 
