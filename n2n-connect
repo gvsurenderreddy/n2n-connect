@@ -1,0 +1,24 @@
+#!/bin/sh
+
+function usage
+{
+	echo "Usage: $0 <profile>"
+}
+
+if [ `id -u` != "0" ]; then
+	echo "Error: this script must be run as root."
+	exit 1
+fi
+
+if (( $# < 1)); then
+	usage
+	exit 1
+fi
+
+if [ ! -e "/etc/n2n/$1" ]; then
+	echo "Profile not found"
+	exit 1
+fi
+
+. /etc/n2n/$1
+/usr/sbin/edge -a $INTF_ADDRESS -c $NETWORK_NAME -k $N2N_KEY -l $SUPERNODE_ADDRESS -f
