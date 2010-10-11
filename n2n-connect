@@ -20,6 +20,8 @@ if [ ! -e "/etc/n2n/$1" ]; then
 	exit 1
 fi
 
+. /etc/n2n/$1
+
 if [ ! -z $INTF_ADDRESS ]; then
 	echo "Error: interface address not set."
 	exit 1
@@ -40,5 +42,4 @@ if [ ! -z $SUPERNODE_ADDRESS ]; then
 	exit 1
 fi
 
-. /etc/n2n/$1
 /usr/sbin/edge -a $INTF_ADDRESS -c $NETWORK_NAME -k $N2N_KEY -l $SUPERNODE_ADDRESS -f
