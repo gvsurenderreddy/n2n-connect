@@ -1,4 +1,4 @@
-# Configuration file for N2N
+# Example configuration file for n2n-connect
 
 # The IP address of the local VPN interface
 INTF_ADDRESS=10.1.1.1.

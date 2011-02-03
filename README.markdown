@@ -12,9 +12,9 @@ Copy the n2n-connect script to a directory inside your $PATH. E.g.
 
 Next create the profile directory:
 
-	sudo mkdir /etc/n2n-connect
-	sudo chmod 700 /etc/n2n-connect
-	sudo cp example /etc/n2n-connect
+	sudo mkdir /etc/n2n
+	sudo chmod 700 /etc/n2n
+	sudo cp example /etc/n2n
 
 Configuration
 -------------
