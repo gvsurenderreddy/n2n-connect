@@ -20,26 +20,39 @@ if [ ! -e "/etc/n2n/$1" ]; then
 	exit 1
 fi
 
+INTF_NAME=n2n-$1
+
 . /etc/n2n/$1
 
-if [ ! -z $INTF_ADDRESS ]; then
+if [ ! -n "${INTF_ADDRESS+x}" ]; then
 	echo "Error: interface address not set."
 	exit 1
 fi
 
-if [ ! -z $NETWORK_NAME ]; then
+if [ ! -n "${INTF_MASK+x}" ]; then
+	echo "Error: interface subnet mask not set."
+	exit 1
+fi
+
+if [ ! -n "${NETWORK_NAME+x}" ]; then
 	echo "Error: Network community name not set."
 	exit 1
 fi
 
-if [ ! -z $N2N_KEY ]; then
+if [ ! -n "${N2N_KEY+x}" ]; then
 	echo "Error: Network key not set."
 	exit 1
 fi
 
-if [ ! -z $SUPERNODE_ADDRESS ]; then
+if [ ! -n "${SUPERNODE_ADDRESS+x}" ]; then
 	echo "Error: Supernode address not set."
 	exit 1
 fi
 
-/usr/sbin/edge -a $INTF_ADDRESS -c $NETWORK_NAME -k $N2N_KEY -l $SUPERNODE_ADDRESS -f
+if [ -n "${N2N_UID+x}" -a -n "${N2N_GID+x}" ]; then
+	PRIV_PART="-u $N2N_UID -g $N2N_GID"
+else
+	PRIV_PART=""
+fi
+
+N2N_KEY=$N2N_KEY edge -d $INTF_NAME -a $INTF_ADDRESS -s $INTF_MASK -c $NETWORK_NAME -l $SUPERNODE_ADDRESS $PRIV_PART -b -f

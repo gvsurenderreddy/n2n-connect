@@ -1,0 +1,24 @@
+# Configuration file for N2N
+
+# The IP address of the local VPN interface
+INTF_ADDRESS=10.1.1.1.
+
+# The netmask of the local VPN interface
+INTF_MASK=255.255.255.0
+
+# The N2N network name
+NETWORK_NAME=my_network
+
+# The encryption key
+N2N_KEY=secret
+
+# The address of the supernode in the form of <host>:<port>
+SUPERNODE_ADDRESS=example.com:6789
+
+# If you want edge to drop user privileges uncomment the following two options
+
+# User ID (numeric) to use when privileges are dropped
+#N2N_UID=65534
+
+# Group ID (numeric) to use when privileges are dropped
+#N2N_GID=65534
